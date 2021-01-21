@@ -48,13 +48,24 @@ private:
 
 	bool search(Node<T1, T2>* aux, T1 key) {
 		if (aux == nullptr)
-			return nullptr;
+			return 0;
 		else if (key < aux->getKey())
 			return search(aux->getLeft(), key);
 		else if (key > aux->getKey())
 			return search(aux->getRight(), key);
 		else
 			return 1;
+	}
+
+	Node<T1, T2>* find(Node<T1, T2>* aux, T1 key) {
+		if (aux == nullptr)
+			return nullptr;
+		else if (key < aux->getKey())
+			return find(aux->getLeft(), key);
+		else if (key > aux->getKey())
+			return find(aux->getRight(), key);
+		else
+			return aux;
 	}
 
 	void forEach1(void(*function)(T1), Node<T1,T2> *aux) {
@@ -104,8 +115,13 @@ public:
 	bool contains(T1 key) {
 		return search(head, key);
 	}
+
 	void forEach(void(*function)(T1)) {
 		forEach1(function, head);
+	}
+
+	T2 operator[](T1 key) {
+		return find(head, key)->getData();
 	}
 };
 	
