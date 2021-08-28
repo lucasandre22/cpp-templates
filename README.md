@@ -1,1 +1,1 @@
-# C++ studies
+# C++ map template
