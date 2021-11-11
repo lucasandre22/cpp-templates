@@ -8,7 +8,7 @@ private:
 	private:
 		Node<T3, T4>* right;
 		Node<T3, T4>* left;
-		T3 key;
+		
 		T4 data;
 	public:
 		Node(T3 key, T4 data) { right = nullptr; left = nullptr; this->key = key; this->data = data; }
@@ -70,8 +70,8 @@ private:
 
 	void forEach1(void(*function)(T1), Node<T1,T2> *aux) {
 		if (aux != nullptr) {
-			function(aux->getKey());
 			forEach1(function, aux->getLeft());
+			function(aux->getKey());
 			forEach1(function, aux->getRight());
 		}
 	}
